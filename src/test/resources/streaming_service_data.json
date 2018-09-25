@@ -1,0 +1,87 @@
+{
+    users: [{
+        id: "10",
+        username: "aumago",
+        age: 34,
+        pendingMovies: [],
+        watchedMovies: ["30", "70"]
+    }, {
+        id: "20",
+        username: "Alcestes",
+        age: 12,
+        email: "petit@gmail.com",
+        pendingMovies: [],
+        watchedMovies: ["10", "30"]
+    }, {
+        id: "30",
+        username: "Paul Sheldon",
+        age: 56,
+        email: "misery@king.com",
+        pendingMovies: ["10", "20"],
+        watchedMovies: []
+    }, {
+        id: "40",
+        username: "Kaladin Stormblessed",
+        age: 22,
+        email: "stormlight@archive.com",
+        pendingMovies: ["10", "20"],
+        watchedMovies: ["30", "40"]
+    }, {
+        id: "50",
+        username: "Mikey",
+        age: 13,
+        email: "USA",
+        pendingMovies: ["10", "20"],
+        watchedMovies: ["30", "40"]
+    }],
+    movies: [{
+        id: "10",
+        title: "Alien",
+        duration: 110,
+        director: "Ridley Scott",
+        genre: "Science Fiction",
+        score: 9.5
+    }, {
+        id: "20",
+        title: "Blade Runner",
+        duration: 117,
+        director: "Ridley Scott",
+        genre: "Science Fiction",
+        score: 9
+    }, {
+        id: "30",
+        title: "Young Frankestein",
+        duration: 105,
+        director: "Mel Brooks",
+        genre: "Comedy",
+        score: 9.2
+    }, {
+        id: "40",
+        title: "The Last Airbender",
+        duration: 103,
+        director: "M. Night Shyamalan",
+        genre: "Fantasy",
+        score: 2
+    }, {
+        id: "50",
+        title: "The Wolf of Wall Street",
+        duration: 180,
+        director: "Martin Scorsese",
+        genre: "Comedy",
+        score: 8.5
+    }, {
+        id: "60",
+        title: "Gangs of New York",
+        duration: 168,
+        director: "Martin Scorsese",
+        genre: "Drama",
+        score: 9.7
+    }, {
+        id: "70",
+        title: "Zoolander",
+        duration: 89,
+        director: "Ben Stiller",
+        genre: "Comedy",
+        score: 8.1
+    }]
+}

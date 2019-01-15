@@ -1,12 +1,12 @@
 package org.openbravo.functional.analytics;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
+import java.util.stream.Collectors;
 
 import org.openbravo.functional.model.Movie;
 import org.openbravo.functional.model.User;
@@ -29,26 +29,12 @@ public class MovieAnalytics {
   }
 
   public List<String> getTop3AcclaimedMovieTitlesOrderedByRating(List<Movie> movies) {
-    List<Movie> acclaimedMovies = new ArrayList<>();
-    for (Movie movie : movies) {
-      if (movie.getScore() >= 9) {
-        acclaimedMovies.add(movie);
-      }
-    }
-    Collections.sort(acclaimedMovies, new Comparator<Movie>() {
-      @Override
-      public int compare(Movie o1, Movie o2) {
-        return Double.compare(o2.getScore(), o1.getScore());
-      }
-    });
-    List<String> movieTitles = new ArrayList<>();
-    for (Movie movie : acclaimedMovies) {
-      movieTitles.add(movie.getTitle());
-      if (movieTitles.size() >= 3) {
-        break;
-      }
-    }
-    return movieTitles;
+    return movies.stream() //
+        .filter(movie -> movie.getScore() >= 9) //
+        .sorted(Comparator.comparing(Movie::getScore).reversed()) //
+        .map(movie -> movie.getTitle()) //
+        .limit(3) //
+        .collect(Collectors.toList());
   }
 
   public int getSumDurationOfMoviesOfDirector(List<Movie> movies, String director) {

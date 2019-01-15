@@ -1,8 +1,6 @@
 package org.openbravo.functional.analytics;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
@@ -60,15 +58,8 @@ public class MovieAnalytics {
   }
 
   public Map<String, List<Movie>> getMoviesByGenre(List<Movie> movies) {
-    Map<String, List<Movie>> moviesByGenre = new HashMap<>();
-    for (Movie movie : movies) {
-      String genre = movie.getGenre();
-      if (!moviesByGenre.containsKey(genre)) {
-        moviesByGenre.put(genre, new ArrayList<>());
-      }
-      moviesByGenre.get(genre).add(movie);
-    }
-    return moviesByGenre;
+    return movies.stream() //
+        .collect(Collectors.groupingBy(Movie::getGenre));
   }
 
 }

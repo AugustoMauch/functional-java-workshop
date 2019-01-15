@@ -11,24 +11,27 @@ import org.openbravo.functional.model.Movie;
 import org.openbravo.functional.model.User;
 
 public class MethodReferencesTests {
-  
-  public static Function<Integer, String> intToString = integer -> String.valueOf(integer);
-  
-  public static  Function<User, String> getUserName = user -> user.getUsername();
 
-  public static  Predicate<User> userIsMinor = user -> user.isMinor();
-  
-  public static  Predicate<User> userNameStartsWithA = user -> user.getUsername().startsWith("A");
-  
-  public static  Consumer<User> printUserName = user -> System.out.println(user.getUsername());
-  
-  public static  BiFunction<User, Movie, Boolean> userHasWatchedMovie = (user, movie) -> user.hasWatchedMovie(movie);
+  public static Function<Integer, String> intToString = String::valueOf;
 
-  public static  BiFunction<Movie, User, Boolean> movieHasBeenWatchedByUser = (movie, user) -> user.hasWatchedMovie(movie);
-  
-  public static  Supplier<LocalDate> dateSupplier = () -> LocalDate.now(); 
-  
-  public static  Supplier<String> newStringSupplier = () -> new String();
-  
+  public static Function<User, String> getUserName = User::getUsername;
+
+  public static Predicate<User> userIsMinor = User::isMinor;
+
+  // it cannot be expressed with method reference
+  public static Predicate<User> userNameStartsWithA = user -> user.getUsername().startsWith("A");
+
+  // it cannot be expressed with method reference
+  public static Consumer<User> printUserName = user -> System.out.println(user.getUsername());
+
+  public static BiFunction<User, Movie, Boolean> userHasWatchedMovie = User::hasWatchedMovie;
+
+  // it cannot be expressed with method reference
+  public static BiFunction<Movie, User, Boolean> movieHasBeenWatchedByUser = (movie, user) -> user
+      .hasWatchedMovie(movie);
+
+  public static Supplier<LocalDate> dateSupplier = LocalDate::now;
+
+  public static Supplier<String> newStringSupplier = String::new;
 
 }

@@ -11,33 +11,33 @@ import org.openbravo.functional.model.Movie;
 import org.openbravo.functional.model.User;
 
 public class MovieAnalytics {
-  
-  public boolean userHasWatchedMovie(User user, Movie movie) {
-    return userInteractsWithMovie(user, movie, new UserMovieInteraction() {
+
+  public boolean userHasWatchedMovie(User aUser, Movie aMovie) {
+    return userInteractsWithMovie(aUser, aMovie, new UserMovieInteraction() {
       @Override
       public boolean interacts(User user, Movie movie) {
         return user.getWatchedMovies().contains(movie);
       }
     });
   }
-  
-  public boolean userWantsToWatchMovie(User user, Movie movie) {
-    return userInteractsWithMovie(user, movie, new UserMovieInteraction() {
+
+  public boolean userWantsToWatchMovie(User aUser, Movie aMovie) {
+    return userInteractsWithMovie(aUser, aMovie, new UserMovieInteraction() {
       @Override
       public boolean interacts(User user, Movie movie) {
         return user.getPendingMovies().contains(movie);
       }
     });
   }
-  
+
   public boolean userInteractsWithMovie(User user, Movie movie, UserMovieInteraction interaction) {
     return interaction.interacts(user, movie);
   }
-  
+
   private interface UserMovieInteraction {
     boolean interacts(User user, Movie movie);
   }
-  
+
   public List<String> getTop3AcclaimedMovieTitlesOrderedByRating(List<Movie> movies) {
     List<Movie> acclaimedMovies = new ArrayList<>();
     for (Movie movie : movies) {
@@ -48,7 +48,7 @@ public class MovieAnalytics {
     Collections.sort(acclaimedMovies, new Comparator<Movie>() {
       @Override
       public int compare(Movie o1, Movie o2) {
-        return Double.compare(o2.getScore(),o1.getScore());
+        return Double.compare(o2.getScore(), o1.getScore());
       }
     });
     List<String> movieTitles = new ArrayList<>();
@@ -60,7 +60,6 @@ public class MovieAnalytics {
     }
     return movieTitles;
   }
-  
 
   public int getSumDurationOfMoviesOfDirector(List<Movie> movies, String director) {
     int totalDuration = 0;

@@ -4,8 +4,8 @@ import org.openbravo.functional.model.User;
 
 public class UserPrinter {
 
-  public String printBasicUserInfo(User user) {
-    return printInfo(user, new UserStringifier() {
+  public String printBasicUserInfo(User aUser) {
+    return printInfo(aUser, new UserStringifier() {
 
       @Override
       public String stringify(User user) {
@@ -19,8 +19,8 @@ public class UserPrinter {
     });
   }
 
-  public String printCompleteUserInfo(User user) {
-    return printInfo(user, new UserStringifier() {
+  public String printCompleteUserInfo(User aUser) {
+    return printInfo(aUser, new UserStringifier() {
 
       @Override
       public String stringify(User user) {

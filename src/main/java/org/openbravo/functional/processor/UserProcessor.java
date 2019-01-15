@@ -6,18 +6,18 @@ import java.util.List;
 
 public class UserProcessor {
 
-  public void sendEmailToUsers(List<User> Users) {
-    doGenericActionOnUsers(Users, new UserAction() {
+  public void sendEmailToUsers(List<User> users) {
+    doGenericActionOnUsers(users, new UserAction() {
       @Override
-      public void doAction(User User) {
-        showInScreen(User);
+      public void doAction(User user) {
+        showInScreen(user);
       }
     });
   }
 
-  public void doGenericActionOnUsers(List<User> Users, UserAction action) {
-    for (User User : Users) {
-      action.doAction(User);
+  public void doGenericActionOnUsers(List<User> users, UserAction action) {
+    for (User user : users) {
+      action.doAction(user);
     }
   }
 
@@ -25,7 +25,7 @@ public class UserProcessor {
     public void doAction(User p);
   }
 
-  private static void showInScreen(User User) {
+  private static void showInScreen(User user) {
     // shows info about a User in the main screen
   }
 }

@@ -37,7 +37,7 @@ public class MovieAnalyticsShould extends StreamingServiceStore {
 
     double averageRating = analytics.getAverageRatingOfGenre(movies, "Comedy");
 
-    assertEquals("Wrong average rating of comedies", 8, averageRating, 0.0001);
+    assertEquals("Wrong average rating of comedies", 8.6, averageRating, 0.0001);
   }
 
   @Test

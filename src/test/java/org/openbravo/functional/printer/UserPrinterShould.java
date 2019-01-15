@@ -29,7 +29,7 @@ public class UserPrinterShould extends StreamingServiceStore {
     UserPrinter printer = new UserPrinter();
 
     String completeUserInfo = printer.printCompleteUserInfo(user);
-    assertEquals("Wrong full user info", "aumago", completeUserInfo);
+    assertEquals("Wrong full user info", "aumago\n" + "34\n" + "", completeUserInfo);
   }
 
 }

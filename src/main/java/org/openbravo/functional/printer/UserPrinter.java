@@ -27,8 +27,8 @@ public class UserPrinter {
         StringBuilder builder = new StringBuilder();
         builder.append(user.getUsername() + "\n");
         builder.append(user.getAge() + "\n");
-        builder.append(user.getEmail().toLowerCase() + "\n");
-        builder.append(user.getAnyPendingMovie().getTitle() + "\n");
+        user.getEmail().ifPresent(email -> builder.append(email.toLowerCase() + "\n"));
+        user.getAnyPendingMovie().ifPresent(movie -> builder.append(movie.getTitle() + "\n"));
         return builder.toString();
       }
 

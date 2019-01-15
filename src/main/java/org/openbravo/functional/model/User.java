@@ -1,6 +1,7 @@
 package org.openbravo.functional.model;
 
 import java.util.List;
+import java.util.Optional;
 
 public class User {
 
@@ -11,7 +12,8 @@ public class User {
   private List<Movie> pendingMovies;
   private List<Movie> watchedMovies;
 
-  public User(String id, String username, int age, String email, List<Movie> pendingMovies, List<Movie> watchedMovies) {
+  public User(String id, String username, int age, String email, List<Movie> pendingMovies,
+      List<Movie> watchedMovies) {
     this.id = id;
     this.username = username;
     this.age = age;
@@ -31,15 +33,15 @@ public class User {
   public int getAge() {
     return age;
   }
-  
+
   public boolean isMinor() {
     return age < 18;
   }
 
-  public String getEmail() {
-    return email;
+  public Optional<String> getEmail() {
+    return Optional.ofNullable(email);
   }
-  
+
   public boolean hasWatchedMovie(Movie movie) {
     return watchedMovies.contains(movie);
   }
@@ -52,11 +54,11 @@ public class User {
     return watchedMovies;
   }
 
-  public Movie getAnyPendingMovie() {
+  public Optional<Movie> getAnyPendingMovie() {
     if (pendingMovies.isEmpty()) {
-      return null;
+      return Optional.empty();
     } else {
-      return pendingMovies.get(0);
+      return Optional.of(pendingMovies.get(0));
     }
   }
 }

@@ -38,20 +38,15 @@ public class MovieAnalytics {
   public int getSumDurationOfMoviesOfDirector(List<Movie> movies, String director) {
     return movies.stream() //
         .filter(movie -> director.equals(movie.getDirector())) //
-        .map(Movie::getDuration) //
-        .reduce(0, Integer::sum);
+        .mapToInt(Movie::getDuration) //
+        .sum();
   }
 
   public double getAverageRatingOfGenre(List<Movie> movies, String genre) {
-    int nComedies = 0;
-    int sumRating = 0;
-    for (Movie movie : movies) {
-      if (genre.equals(movie.getGenre())) {
-        nComedies++;
-        sumRating += movie.getScore();
-      }
-    }
-    return sumRating / nComedies;
+    return movies.stream() //
+        .filter(movie -> genre.equals(movie.getGenre())) //
+        .mapToDouble(Movie::getScore) //
+        .average().orElse(0);
   }
 
   public Map<String, List<Movie>> getMoviesByGenre(List<Movie> movies) {

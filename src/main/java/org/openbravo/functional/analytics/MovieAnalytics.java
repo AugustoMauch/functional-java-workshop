@@ -72,8 +72,8 @@ public class MovieAnalytics {
   }
 
   public double getAverageRatingOfGenre(List<Movie> movies, String genre) {
-    int nComedies = 0;
-    int sumRating = 0;
+    double nComedies = 0;
+    double sumRating = 0;
     for (Movie movie : movies) {
       if (genre.equals(movie.getGenre())) {
         nComedies++;

@@ -2,6 +2,7 @@ package org.openbravo.functional.finder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.openbravo.functional.model.Movie;
 
@@ -15,18 +16,14 @@ public class MovieFinder {
     return filterMovies(movies, movie -> movie.getGenre().equals("Comedy"));
   }
 
-  public List<Movie> filterMovies(List<Movie> allMovies, MovieFilter filter) {
+  public List<Movie> filterMovies(List<Movie> allMovies, Predicate<Movie> filter) {
     List<Movie> filteredMovies = new ArrayList<>();
     for (Movie movie : allMovies) {
-      if (filter.applies(movie)) {
+      if (filter.test(movie)) {
         filteredMovies.add(movie);
       }
     }
     return filteredMovies;
-  }
-
-  private interface MovieFilter {
-    boolean applies(Movie movie);
   }
 
 }

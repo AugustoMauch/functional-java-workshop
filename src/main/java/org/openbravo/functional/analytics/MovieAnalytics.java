@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiFunction;
 
 import org.openbravo.functional.model.Movie;
 import org.openbravo.functional.model.User;
@@ -22,12 +23,9 @@ public class MovieAnalytics {
         (user, movie) -> user.getPendingMovies().contains(movie));
   }
 
-  public boolean userInteractsWithMovie(User user, Movie movie, UserMovieInteraction interaction) {
-    return interaction.interacts(user, movie);
-  }
-
-  private interface UserMovieInteraction {
-    boolean interacts(User user, Movie movie);
+  public boolean userInteractsWithMovie(User user, Movie movie,
+      BiFunction<User, Movie, Boolean> interaction) {
+    return interaction.apply(user, movie);
   }
 
   public List<String> getTop3AcclaimedMovieTitlesOrderedByRating(List<Movie> movies) {

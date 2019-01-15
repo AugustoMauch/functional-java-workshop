@@ -1,6 +1,7 @@
 package org.openbravo.functional.processor;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import org.openbravo.functional.model.User;
 
@@ -10,14 +11,10 @@ public class UserProcessor {
     doGenericActionOnUsers(users, user -> showInScreen(user));
   }
 
-  public void doGenericActionOnUsers(List<User> users, UserAction action) {
+  public void doGenericActionOnUsers(List<User> users, Consumer<User> action) {
     for (User user : users) {
-      action.doAction(user);
+      action.accept(user);
     }
-  }
-
-  private interface UserAction {
-    public void doAction(User p);
   }
 
   private static void showInScreen(User user) {

@@ -22,14 +22,14 @@ public class UserPrinterShould extends StreamingServiceStore {
     assertEquals("Wrong basic user info", "AUMAGO", basicUserInfo);
   }
 
-//  @Test
+  // @Test
   public void printCompleteUserInfo() throws IOException, URISyntaxException {
     StreamingService streamingService = getStreamingService();
     User user = streamingService.getUsers().get("10");
     UserPrinter printer = new UserPrinter();
 
     String completeUserInfo = printer.printCompleteUserInfo(user);
-    assertEquals("Wrong full user info", "aumago", completeUserInfo);
+    assertEquals("Wrong full user info", "aumago\n" + "34\n" + "", completeUserInfo);
   }
 
 }

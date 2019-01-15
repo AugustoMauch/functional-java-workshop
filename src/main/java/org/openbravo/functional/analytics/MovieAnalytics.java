@@ -36,13 +36,10 @@ public class MovieAnalytics {
   }
 
   public int getSumDurationOfMoviesOfDirector(List<Movie> movies, String director) {
-    int totalDuration = 0;
-    for (Movie movie : movies) {
-      if (director.equals(movie.getDirector())) {
-        totalDuration += movie.getDuration();
-      }
-    }
-    return totalDuration;
+    return movies.stream() //
+        .filter(movie -> director.equals(movie.getDirector())) //
+        .map(Movie::getDuration) //
+        .reduce(0, Integer::sum);
   }
 
   public double getAverageRatingOfGenre(List<Movie> movies, String genre) {

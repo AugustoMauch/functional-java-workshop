@@ -13,21 +13,13 @@ import org.openbravo.functional.model.User;
 public class MovieAnalytics {
 
   public boolean userHasWatchedMovie(User aUser, Movie aMovie) {
-    return userInteractsWithMovie(aUser, aMovie, new UserMovieInteraction() {
-      @Override
-      public boolean interacts(User user, Movie movie) {
-        return user.getWatchedMovies().contains(movie);
-      }
-    });
+    return userInteractsWithMovie(aUser, aMovie,
+        (user, movie) -> user.getWatchedMovies().contains(movie));
   }
 
   public boolean userWantsToWatchMovie(User aUser, Movie aMovie) {
-    return userInteractsWithMovie(aUser, aMovie, new UserMovieInteraction() {
-      @Override
-      public boolean interacts(User user, Movie movie) {
-        return user.getPendingMovies().contains(movie);
-      }
-    });
+    return userInteractsWithMovie(aUser, aMovie,
+        (user, movie) -> user.getPendingMovies().contains(movie));
   }
 
   public boolean userInteractsWithMovie(User user, Movie movie, UserMovieInteraction interaction) {

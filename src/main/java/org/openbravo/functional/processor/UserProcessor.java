@@ -1,18 +1,13 @@
 package org.openbravo.functional.processor;
 
-import org.openbravo.functional.model.User;
-
 import java.util.List;
+
+import org.openbravo.functional.model.User;
 
 public class UserProcessor {
 
   public void sendEmailToUsers(List<User> users) {
-    doGenericActionOnUsers(users, new UserAction() {
-      @Override
-      public void doAction(User user) {
-        showInScreen(user);
-      }
-    });
+    doGenericActionOnUsers(users, user -> showInScreen(user));
   }
 
   public void doGenericActionOnUsers(List<User> users, UserAction action) {

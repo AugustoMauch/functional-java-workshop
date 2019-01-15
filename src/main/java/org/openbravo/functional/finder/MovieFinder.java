@@ -1,23 +1,18 @@
 package org.openbravo.functional.finder;
 
-import org.openbravo.functional.model.Movie;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.openbravo.functional.model.Movie;
 
 public class MovieFinder {
 
   public List<Movie> getLongMovies(List<Movie> movies) {
-    return filterMovies(movies, new LongMovieFilter());
+    return filterMovies(movies, movie -> movie.getDuration() >= 120);
   }
 
   public List<Movie> getComedies(List<Movie> movies) {
-    return filterMovies(movies, new MovieFilter() {
-      @Override
-      public boolean applies(Movie movie) {
-        return movie.getGenre().equals("Comedy");
-      }
-    });
+    return filterMovies(movies, movie -> movie.getGenre().equals("Comedy"));
   }
 
   public List<Movie> filterMovies(List<Movie> allMovies, MovieFilter filter) {
@@ -34,10 +29,4 @@ public class MovieFinder {
     boolean applies(Movie movie);
   }
 
-  private class LongMovieFilter implements MovieFilter {
-    @Override
-    public boolean applies(Movie movie) {
-      return movie.getDuration() >= 120;
-    }
-  }
 }
